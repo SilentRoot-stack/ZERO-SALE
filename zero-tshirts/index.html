@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZERO — Premium Oversized Streetwear & Graphic Tees</title>
+  <meta name="description" content="Explore ZERO - The absolute pinnacle of modern heavy cotton graphic tees and oversized streetwear fashion. Mandatory sign up to purchase.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    ⚡ FREE EXPRESS SHIPPING ON ALL ORDERS OVER $75 • USE CODE <strong>ZERO10</strong> FOR 10% OFF ⚡
+  </div>
+
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="brand-logo">
+        ZERO <span class="logo-badge">LABS</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#" class="active">Shop All</a></li>
+        <li><a href="#catalog">New Arrivals</a></li>
+        <li><a href="#catalog">Best Sellers</a></li>
+        <li><a href="#about">About ZERO</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button id="auth-btn" class="auth-user-btn" onclick="openAuthModal('signin')">
+          <i class="fa-solid fa-user"></i>
+          <span id="auth-btn-text">Sign In / Register</span>
+        </button>
+
+        <button id="cart-btn" class="cart-icon-btn" onclick="toggleCartDrawer()">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cart-badge" class="cart-count">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="fa-solid fa-fire"></i> FALL 2026 DROP NOW LIVE
+        </div>
+        <h1 class="hero-title">WEAR THE <span>ABSOLUTE ZERO.</span></h1>
+        <p class="hero-subtitle">
+          Uncompromising heavyweight cotton, architectural boxy fits, and ultra-vibrant artwork. Premium streetwear designed for those who stand out.
+        </p>
+        <div class="hero-buttons">
+          <a href="#catalog" class="btn-primary">
+            Explore Collection <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#about" class="btn-secondary">
+            Our Material Specs
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/tshirt1.png" alt="ZERO Featured Tee" class="hero-img-preview">
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <section id="catalog" class="catalog-section">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">CURATED DROPS</h2>
+        <p class="section-subtitle">Sign up or log in to unlock cart checkout and place orders.</p>
+      </div>
+
+      <div class="category-pills">
+        <button class="pill active" onclick="filterCategory('ALL', this)">All Tees</button>
+        <button class="pill" onclick="filterCategory('STREETWEAR', this)">Streetwear</button>
+        <button class="pill" onclick="filterCategory('CYBERPUNK', this)">Cyberpunk</button>
+        <button class="pill" onclick="filterCategory('MINIMAL', this)">Minimal</button>
+        <button class="pill" onclick="filterCategory('VINTAGE', this)">Vintage</button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="product-grid" class="product-grid">
+      <!-- Dynamic Products injected via app.js -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="catalog-section" style="margin-bottom: 40px;">
+    <div style="background: rgba(22, 22, 30, 0.6); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 40px; text-align: center;">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 12px; color: #fff;">THE ZERO GUARANTEE</h2>
+      <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 30px;">
+        Every ZERO piece is crafted using 240 GSM pre-shrunk organic combed cotton, double-needle stitched seams, and high-density screen printing built to last years.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+        <div>
+          <i class="fa-solid fa-shirt" style="font-size: 2rem; color: var(--accent-purple); margin-bottom: 10px;"></i>
+          <h4 style="color: #fff;">240 GSM Heavy Cotton</h4>
+        </div>
+        <div>
+          <i class="fa-solid fa-truck-fast" style="font-size: 2rem; color: var(--accent-cyan); margin-bottom: 10px;"></i>
+          <h4 style="color: #fff;">Express Worldwide Shipping</h4>
+        </div>
+        <div>
+          <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--accent-pink); margin-bottom: 10px;"></i>
+          <h4 style="color: #fff;">30-Day Easy Returns</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="modal-overlay">
+    <div class="auth-card">
+      <button class="modal-close-btn" onclick="closeAuthModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="auth-header">
+        <h3 id="auth-title">Welcome to ZERO</h3>
+        <p id="auth-subtitle">Create an account or log in to buy your T-shirt.</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button id="tab-signin" class="auth-tab-btn active" onclick="switchAuthTab('signin')">Sign In</button>
+        <button id="tab-signup" class="auth-tab-btn" onclick="switchAuthTab('signup')">Sign Up</button>
+      </div>
+
+      <form id="auth-form" onsubmit="handleAuthSubmit(event)">
+        <div class="form-group">
+          <label for="auth-username">Username</label>
+          <input type="text" id="auth-username" class="input-field" placeholder="Enter your username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="auth-password">Password</label>
+          <input type="password" id="auth-password" class="input-field" placeholder="Enter password" required>
+        </div>
+
+        <div id="signup-extra-fields" style="display: none;">
+          <div class="form-group">
+            <label for="auth-email">Email Address</label>
+            <input type="email" id="auth-email" class="input-field" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <button type="submit" id="auth-submit-btn" class="auth-submit-btn">
+          Sign In
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div id="quickview-modal" class="modal-overlay">
+    <div class="auth-card" style="max-width: 640px; padding: 28px;">
+      <button class="modal-close-btn" onclick="closeQuickViewModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="quickview-content" style="display: flex; gap: 24px; flex-wrap: wrap;">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Success Modal -->
+  <div id="success-modal" class="modal-overlay">
+    <div class="order-success-card">
+      <div class="success-icon">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 8px;">Order Confirmed!</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+        Thank you <strong id="success-username" style="color:#fff;">Customer</strong>! Your ZERO drop has been reserved.
+      </p>
+      <div style="background: rgba(255,255,255,0.04); border: 1px dashed var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
+          <span>Order Reference:</span>
+          <strong id="success-order-id" style="color: var(--accent-cyan);">#ZERO-9821</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted);">
+          <span>Estimated Delivery:</span>
+          <strong style="color: #fff;">3-5 Business Days</strong>
+        </div>
+      </div>
+      <button class="btn-primary" style="width: 100%;" onclick="closeSuccessModal()">
+        Back to Shop
+      </button>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <h3>YOUR CART</h3>
+      <button class="modal-close-btn" style="position: static;" onclick="toggleCartDrawer()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div id="cart-items-list" class="cart-items-list">
+      <!-- Cart items injected via JS -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Shipping</span>
+        <span style="color: #10b981;">FREE</span>
+      </div>
+      <div class="cart-summary-row total">
+        <span>Total</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+
+      <button id="checkout-btn" class="btn-checkout" onclick="handleCheckout()">
+        <i class="fa-solid fa-lock"></i> Checkout & Buy
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="brand-logo">ZERO <span class="logo-badge">LABS</span></a>
+        <p>Architectural streetwear & high-density heavyweight graphic apparel. Designed in Japan, printed worldwide.</p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>EXPLORE</h4>
+        <ul>
+          <li><a href="#catalog">Streetwear</a></li>
+          <li><a href="#catalog">Cyberpunk Series</a></li>
+          <li><a href="#catalog">Vintage Acid Wash</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>HELP & SUPPORT</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Returns & Exchange</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 ZERO Inc. All rights reserved. Built for supreme aesthetic and performance.
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
